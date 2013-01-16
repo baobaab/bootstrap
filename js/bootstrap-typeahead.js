@@ -258,7 +258,14 @@
 
   , blur: function (e) {
       var that = this
-      setTimeout(function () { that.hide() }, 150)
+      setTimeout(function () {
+        // hide a menu only in case if both menu and element have lost the focus
+        if (!that.$element.is(':focus') && !that.$menu.is(':hover')) {
+          that.hide()
+        } else {
+          that.$element.focus()
+        }
+      }, 150)
     }
 
   , click: function (e) {
